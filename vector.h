@@ -8,16 +8,16 @@ class vector
 {
 private:
 
-	int contain_size, _size;//ÈİÁ¿¿Õ¼ä  Óë  ÔªËØÊıÄ¿
+	int contain_size, _size;//å®¹é‡ç©ºé—´  ä¸  å…ƒç´ æ•°ç›®
 
-	T* _a;//Êı×é
+	T* _a;//æ•°ç»„
 
 public:
 
-	//Ä¬ÈÏ¹¹Ôì
+	//é»˜è®¤æ„é€ 
 	vector() :contain_size(0), _size(0), _a(nullptr) {}
 
-	//¿½±´¹¹Ôì
+	//æ‹·è´æ„é€ 
 	vector(const vector& x):contain_size(x.contain_size), _size(x._size)
 	{
 		_a = new T[contain_size];
@@ -27,16 +27,38 @@ public:
 		}
 	}
 
+	//æ„é€ (int a,b)
+	vector(int w_size, int num) :contain_size(w_size), _size(w_size), _a(nullptr)
+	{
+		_a = new T[contain_size];
+		for (int i = 1; i < _size; i++)
+		{
+			_a[i] = num;
+		}
+	}
+
+	//å¼€å¤´
+	T* begin()
+	{
+		return _a;
+	}
+
+	//ç»“å°¾
+	T* end()
+	{
+		return _a+_size;
+	}
+
 
 	T& operator[] (const T& x)
 	{
 		return _a[x];
 	}
 
-	//´æÈëÊı¾İ
+	//å­˜å…¥æ•°æ®
 	void push_back(const T x)
 	{
-		//ÅĞ¶Ï¿Õ¼äÊÇ·ñ³ä×ã
+		//åˆ¤æ–­ç©ºé—´æ˜¯å¦å……è¶³
 		if (_size == contain_size)resize(_size * 2);
 
 		_a[_size++] = x;
@@ -44,7 +66,7 @@ public:
 	}
 
 
-	int size()//·µ»ØÔªËØ¸öÊı
+	int size()//è¿”å›å…ƒç´ ä¸ªæ•°
 	{
 		return _size;
 	}
@@ -63,7 +85,7 @@ public:
 	}
 
 
-	//ÇåÀí¿Õ¼ä
+	//æ¸…ç†ç©ºé—´
 	void clear()
 	{
 		if (contain_size)
@@ -77,7 +99,7 @@ public:
 
 
 
-	//ÉêÇë¸ü¶àµÄ¿Õ¼ä
+	//ç”³è¯·æ›´å¤šçš„ç©ºé—´
 	void resize(int x)
 	{
 		if (!x)x = 1;
@@ -92,7 +114,7 @@ public:
 	}
 
 
-	//É¾³ıÔªËØ
+	//åˆ é™¤å…ƒç´ 
 
 	void pop_back()
 	{
@@ -100,7 +122,7 @@ public:
 	}
 
 
-	//Îö¹¹º¯Êı
+	//ææ„å‡½æ•°
 	~vector()
 	{
 		clear();
